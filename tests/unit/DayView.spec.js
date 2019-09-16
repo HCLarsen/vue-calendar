@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import DayView from '@/components/DayView'
+import DayView from '@/views/DayView'
 
 describe('DayView', () => {
   const today = new Date();

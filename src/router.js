@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from './views/Home.vue'
-import DayView from './components/DayView.vue'
+import DayView from './views/DayView.vue'
 
 Vue.use(Router)
 
