@@ -1,5 +1,7 @@
 # vue-calendar
 
+A series of simple calendar based components for Vue.js projects.
+
 ## Project setup
 ```
 npm install
@@ -17,7 +19,7 @@ npm run build
 
 ### Run your tests
 ```
-npm run test
+npm run test:unit
 ```
 
 ### Lints and fixes files
