@@ -25,20 +25,15 @@ export default {
   },
   computed: {
     header() {
-      console.log(this.weekday);
-      return `${this.weekday}, ${this.monthName(this.month)} ${this.day}, ${this.year}`
+      return `${this.weekday}, ${this.monthName} ${this.day}, ${this.year}`
     },
     weekday() {
       return new Date(this.year, this.month, this.day).toLocaleDateString("en-CA", { weekday: "long" })
+    },
+    monthName() {
+      return new Date(0, this.month).toLocaleDateString("en-CA", { month: "long" })
     }
-  },
-  methods: {
-    monthName(month) {
-      return new Date(0, month).toLocaleDateString("en-CA", {
-        month: "long"
-      });
-    }
-  },
+  }
 }
 
 </script>
