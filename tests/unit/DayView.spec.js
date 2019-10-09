@@ -17,6 +17,25 @@ describe('DayView', () => {
     const today = new Date();
     const dateString = today.toLocaleDateString('en-CA', options);
 
-    expect(wrapper.html()).toContain(`<h1>${dateString}</h1>`)
+    const header = wrapper.find('h1#date');
+    expect(header.text()).toContain(dateString);
+  })
+
+  it('Renders 24 hours of a day', () => {
+    const hours = wrapper.findAll('li.hour');
+    expect(hours.length).toBe(25);
+
+    const first = hours.at(0);
+    expect(first.html()).toContain('12AM');
+
+    const noon = hours.at(12);
+    expect(noon.html()).toContain('12PM');
+
+    const last = hours.at(24);
+    expect(last.html()).toContain('12AM');
+  })
+
+  it('Renders notification for no events', () => {
+    expect(wrapper.html()).toContain('No Events');
   })
 })
