@@ -3,9 +3,9 @@
     <h1>October</h1>
     <div class="month">
       <ul class="days">
-        <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
         <li v-for="day in daysInThisMonth" :key="day" class="day"><p v-html="day"></p></li>
-        <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
       </ul>
     </div>
   </div>
@@ -89,5 +89,9 @@ export default {
     margin: 0;
     text-align: right;
     background-color: lightgrey;
+  }
+
+  li.day.other-month {
+    background-color: #EEE;
   }
 </style>
