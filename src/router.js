@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import DayView from './views/DayView.vue'
-import MonthView from './views/MonthView.vue'
+// import MonthView from './views/MonthView.vue'
+import YearView from './views/YearView.vue'
 
 Vue.use(Router)
 
@@ -12,8 +13,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: MonthView,
-      props: {year: 2019, month: 8, day: 11}
+      component: YearView,
+      props: {year: 2019}
     }
   ]
 })
