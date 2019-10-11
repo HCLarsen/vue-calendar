@@ -15,6 +15,6 @@ describe('MonthView', () => {
 
   it('Renders grid of days', () => {
     const days = wrapper.findAll('li.day');
-    expect(days.length).toBe(31);
+    expect(days.length).toBe(35);
   });
 })

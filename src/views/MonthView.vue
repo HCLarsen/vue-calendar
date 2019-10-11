@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1>October</h1>
-    <div>
+    <div class="month">
       <ul class="days">
-        <li v-for="day in days" :key="day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in daysInThisMonth" :key="day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day"><p v-html="day"></p></li>
       </ul>
     </div>
   </div>
@@ -29,11 +31,63 @@ export default {
         month: "long"
       });
     },
-    days() {
-      return new Date(this.year, this.month + 1, 0).getDate();
+    daysInThisMonth() {
+      return this.range(this.daysInMonth(this.month), 1);
     },
+    visibleDaysInNextMonth() {
+      const weekdayStart = new Date(this.year, this.month + 1, 0).getDay();
+      return this.range(6 - weekdayStart, 1);
+    },
+    visibleDaysInPreviousMonth() {
+      const weekdayEnd = new Date(this.year, this.month, 0).getDay();
+      const lastDay = new Date(this.year, this.month, 0).getDate();
+      const firstDay = lastDay - weekdayEnd;
+      return this.range(weekdayEnd + 1, firstDay);
+    }
+  },
+  methods: {
+    daysInMonth(month) {
+      return new Date(this.year, month + 1, 0).getDate();
+    },
+    range(size, startAt = 0) {
+      return [...Array(size).keys()].map(i => i + startAt);
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .month {
+    width: 100%;
+  }
+
+  ul.days {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0.5px solid grey;
+
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  li.day {
+    width: calc(100% / 7 - 1px);
+    height: 6em;
+
+    border: 0.5px solid grey;
+
+    background: inherit;
+  }
+
+  li.day > p {
+    width: calc(100% - 0.2em);
+    padding-right: 0.2em;
+    margin: 0;
+    text-align: right;
+    background-color: lightgrey;
+  }
+</style>
