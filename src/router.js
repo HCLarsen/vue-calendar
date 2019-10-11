@@ -13,7 +13,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: MonthView,
-      props: {year: new Date().getFullYear(), month: new Date().getMonth(), day: new Date().getDate()}
+      props: {year: 2019, month: 8, day: 11}
     }
   ]
 })
