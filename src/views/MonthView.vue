@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>October</h1>
+    <h1 v-html="monthName"></h1>
     <div class="month">
       <ul class="days">
         <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
@@ -40,9 +40,13 @@ export default {
     },
     visibleDaysInPreviousMonth() {
       const weekdayEnd = new Date(this.year, this.month, 0).getDay();
-      const lastDay = new Date(this.year, this.month, 0).getDate();
-      const firstDay = lastDay - weekdayEnd;
-      return this.range(weekdayEnd + 1, firstDay);
+      if (weekdayEnd < 6) {
+        const lastDay = new Date(this.year, this.month, 0).getDate();
+        const firstDay = lastDay - weekdayEnd;
+        return this.range(weekdayEnd + 1, firstDay);
+      } else {
+        return [];
+      }
     }
   },
   methods: {

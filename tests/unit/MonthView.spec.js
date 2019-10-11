@@ -2,19 +2,32 @@ import { mount } from '@vue/test-utils';
 import MonthView from '@/views/MonthView';
 
 describe('MonthView', () => {
-  const wrapper = mount(MonthView, {
+  const octoberWrapper = mount(MonthView, {
     propsData: {
       month: 9,
       year: 2019
     }
   });
 
+  const septemberWrapper = mount(MonthView, {
+    propsData: {
+      month: 8,
+      year: 2019
+    }
+  });
+
   it('Renders the correct month name', () => {
-    expect(wrapper.html()).toContain('October');
+    expect(octoberWrapper.html()).toContain('October');
+    expect(septemberWrapper.html()).toContain('September');
   });
 
   it('Renders grid of days', () => {
-    const days = wrapper.findAll('li.day');
+    const days = octoberWrapper.findAll('li.day');
+    expect(days.length).toBe(35);
+  });
+
+  it('Renders no extra weeks', () => {
+    const days = septemberWrapper.findAll('li.day');
     expect(days.length).toBe(35);
   });
 })
