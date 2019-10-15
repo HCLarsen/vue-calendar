@@ -22,6 +22,6 @@ describe('YearView', () => {
     expect(january.text()).toContain('January');
 
     const days = january.findAll('li.day');
-    expect(days.length).toBe(31);
+    expect(days.length).toBe(35);
   });
 });

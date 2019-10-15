@@ -82,7 +82,7 @@ export default {
     width: calc(100% / 7 - 1px);
     height: 6em;
 
-    border: 0.5px solid grey;
+    border: inherit;
 
     background: inherit;
   }

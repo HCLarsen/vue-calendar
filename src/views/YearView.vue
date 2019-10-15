@@ -5,9 +5,7 @@
       <ul class="months">
         <li v-for="month in months" :key="month" class="month">
           <h3 v-html="monthName(month)"></h3>
-          <ul class="days">
-            <li v-for="day in daysInMonth(month)" :key="day" class="day" v-html="day"></li>
-          </ul>
+          <Month :month="month" :year="year" />
         </li>
       </ul>
     </div>
@@ -15,6 +13,8 @@
 </template>
 
 <script>
+  import Month from '@/components/Month.vue';
+
   export default {
     name: "YearView",
     props: {
@@ -34,7 +34,10 @@
       daysInMonth(month) {
         return new Date(this.year, month + 1, 0).getDate();
       },
-    }
+    },
+    components: {
+      Month,
+    },
   }
 </script>
 
