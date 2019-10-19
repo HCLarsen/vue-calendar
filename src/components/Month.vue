@@ -50,7 +50,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   ul.days {
     width: 100%;
     margin: 0;
