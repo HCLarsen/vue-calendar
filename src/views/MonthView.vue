@@ -66,7 +66,7 @@ export default {
   }
 
   ul.days {
-    width: 100%;
+    width: calc(100% - 1px);
     margin: 0;
     padding: 0;
     border: 0.5px solid grey;
