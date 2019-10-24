@@ -1,8 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <CalendarView/>
   </div>
 </template>
+
+<script>
+  import CalendarView from '@/views/CalendarView';
+
+  export default {
+    components: {
+      CalendarView
+    }
+  }
+</script>
 
 <style>
 @import './assets/main.css';
@@ -13,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  width: 90%;
+  margin: auto;
 }
 #nav {
   padding: 30px;
