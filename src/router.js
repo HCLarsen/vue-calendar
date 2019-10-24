@@ -6,6 +6,13 @@ import YearView from './views/YearView.vue'
 
 Vue.use(Router)
 
+function todaysPath() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  return `/${year}/${month}`;
+}
+
 function yearProps(route) {
   return {
     year: parseInt(route.params.year, 10)
@@ -32,31 +39,27 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: MonthView,
-      props: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth()
-      }
-    },
-    {
-      path: '/:year',
+      path: '/:year(\\d+)',
       name: 'year',
       component: YearView,
       props: yearProps
     },
     {
-      path: '/:year/:month',
+      path: '/:year(\\d+)/:month(\\d{1,2})',
       name: 'month',
       component: MonthView,
       props: monthProps
     },
     {
-      path: '/:year/:month/:day',
+      path: '/:year(\\d+)/:month(\\d{1,2})/:day(\\d{1,2})',
       name: 'day',
       component: DayView,
       props: dayProps
-    }
+    },
+    {
+      path: '/*',
+      name: 'home',
+      redirect: todaysPath()
+    },
   ]
 })

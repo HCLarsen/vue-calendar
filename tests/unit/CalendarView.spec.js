@@ -11,13 +11,15 @@ const localVue = createLocalVue()
 localVue.use(VueRouter)
 
 describe('CalendarView', () => {
-  it('Renders default path as current month', () => {
+  it('Redirects home path to current month', () => {
     const wrapper = mount(CalendarView, {
       localVue,
       router,
     });
 
     expect(wrapper.find(MonthView).exists()).toBe(true);
+    const monthName = new Date().toLocaleDateString("en-CA", { month: "long" });
+    expect(wrapper.text()).toContain(monthName);
   });
 
   it('Renders 2019', () => {
@@ -30,16 +32,16 @@ describe('CalendarView', () => {
     expect(wrapper.find(YearView).exists()).toBe(true);
   });
 
-  it('Renders October 2019', () => {
+  it('Renders September 2019', () => {
     const wrapper = mount(CalendarView, {
       localVue,
       router,
     });
 
-    router.push("/2019/10");
+    router.push("/2019/9");
 
     expect(wrapper.find(MonthView).exists()).toBe(true);
-    expect(wrapper.text()).toContain('October');
+    expect(wrapper.text()).toContain('September');
   });
 
   it('Renders October 31, 2019', () => {
@@ -52,5 +54,39 @@ describe('CalendarView', () => {
 
     expect(wrapper.find(DayView).exists()).toBe(true);
     expect(wrapper.text()).toContain('Thursday, October 31');
+  });
+
+  it('Redirects invalid path to current month', () => {
+    const wrapper = mount(CalendarView, {
+      localVue,
+      router,
+    });
+    router.push("/2018"); // Prevents unresolved promise warning
+    router.push("/asdfsadf");
+
+    expect(wrapper.find(MonthView).exists()).toBe(true);
+  });
+
+  it('Redirects invalid month path', () => {
+    const wrapper = mount(CalendarView, {
+      localVue,
+      router,
+    });
+
+    router.push("/2018"); // Prevents unresolved promise warning
+    router.push("/2019/131");
+
+    expect(wrapper.find(MonthView).exists()).toBe(true);
+  })
+
+  it('Redirects invalid day path', () => {
+    const wrapper = mount(CalendarView, {
+      localVue,
+      router,
+    });
+    router.push("/2018"); // Prevents unresolved promise warning
+    router.push("/2019/10/123");
+
+    expect(wrapper.find(MonthView).exists()).toBe(true);
   });
 });
