@@ -46,7 +46,7 @@ export default {
       return new Date(this.year, this.month, this.day).toLocaleDateString("en-CA", { weekday: "long" })
     },
     monthName() {
-      return new Date(0, this.month).toLocaleDateString("en-CA", { month: "long" })
+      return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" })
     },
     hours() {
       const hours = ['12AM'];

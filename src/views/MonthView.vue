@@ -27,9 +27,7 @@ export default {
   },
   computed: {
     monthName() {
-      return new Date(0, this.month).toLocaleDateString("en-CA", {
-        month: "long"
-      });
+      return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" });
     },
     daysInThisMonth() {
       return this.range(this.daysInMonth(this.month), 1);
