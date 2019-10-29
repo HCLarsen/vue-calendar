@@ -73,6 +73,5 @@
 
   li.day.other-month {
     color: grey;
-    visibility: hidden;
   }
 </style>
