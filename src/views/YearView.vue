@@ -1,6 +1,14 @@
 <template>
   <div class="year">
-    <h1 v-html="year"></h1>
+    <nav>
+      <router-link :to="{ name: 'year', params: { year: this.year - 1} }" class="previous-year" >
+        <img :src="arrow"/>
+      </router-link>
+      <h1 v-html="year"></h1>
+      <router-link :to="{ name: 'year', params: { year: this.year + 1} }" class="next-year" >
+        <img :src="arrow"/>
+      </router-link>
+    </nav>
     <div class="year">
       <ul class="months">
         <li v-for="month in months" :key="month" class="month">
@@ -15,8 +23,15 @@
 <script>
   import Month from '@/components/Month.vue';
 
+  import arrow from '@/assets/next-arrow.png';
+
   export default {
     name: "YearView",
+    data() {
+      return {
+        arrow
+      }
+    },
     props: {
       year: {
         type: Number
@@ -79,5 +94,35 @@
 
   li.day {
     width: calc(100% / 7 - 1px);
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  nav > h1 {
+    font-size: 2em;
+  }
+
+  .previous-year {
+    display: inline;
+    height: 2em;
+  }
+
+  .previous-year > img {
+    height: 100%;
+    transform: scaleX(-1);
+  }
+
+  .next-year {
+    display: inline;
+    height: 2em;
+  }
+
+  .next-year > img {
+    height: 100%;
   }
 </style>
