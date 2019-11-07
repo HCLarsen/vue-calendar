@@ -11,9 +11,9 @@
     </nav>
     <div class="year">
       <ul class="months">
-        <li v-for="month in months" :key="month" class="month">
-          <h3 v-html="monthName(month)"></h3>
-          <Month :month="month" :year="year" />
+        <li v-for="month in 12" :key="month" class="month">
+          <h3 v-html="monthName(month-1)"></h3>
+          <Month :month="month-1" :year="year" />
         </li>
       </ul>
     </div>
@@ -36,11 +36,6 @@
       year: {
         type: Number
       }
-    },
-    computed: {
-      months() {
-        return Array(12).keys();
-      },
     },
     methods: {
       monthName(month) {

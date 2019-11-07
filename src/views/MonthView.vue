@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h1 v-html="monthName"></h1>
+    <nav>
+      <router-link :to="{ name: 'month', params: { year: this.year, month: this.month} }" class="previous-month" >
+        <img :src="arrow"/>
+      </router-link>
+      <h1 v-html="monthName"></h1>
+      <router-link :to="{ name: 'month', params: { year: this.year, month: this.month + 2} }" class="next-month" >
+        <img :src="arrow"/>
+      </router-link>
+    </nav>
     <div class="month">
       <ul class="days">
         <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
@@ -12,8 +20,15 @@
 </template>
 
 <script>
+import arrow from '@/assets/next-arrow.png';
+
 export default {
   name: "MonthView",
+  data() {
+    return {
+      arrow
+    }
+  },
   props: {
     month: {
       type: Number,
@@ -95,5 +110,30 @@ export default {
 
   li.day.other-month {
     background-color: #EEE;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  nav > h1 {
+    font-size: 2em;
+  }
+
+  .previous-month, .next-month {
+    display: inline;
+    height: 2em;
+  }
+
+  .previous-month > img {
+    height: 100%;
+    transform: scaleX(-1);
+  }
+
+  .next-month > img {
+    height: 100%;
   }
 </style>

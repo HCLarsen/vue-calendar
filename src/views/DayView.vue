@@ -1,6 +1,14 @@
 <template>
   <div class="dayview">
-    <h1 id="date" v-html="header"></h1>
+    <nav>
+      <router-link :to="{ name: 'day', params: previousDay }" class="previous-day" >
+        <img :src="arrow"/>
+      </router-link>
+      <h1 id="date" v-html="header"></h1>
+      <router-link :to="{ name: 'day', params: nextDay }" class="next-day" >
+        <img :src="arrow"/>
+      </router-link>
+    </nav>
     <div class="content">
       <div class="hourly-view">
         <ul class="hours">
@@ -18,9 +26,15 @@
 </template>
 
 <script>
+import arrow from '@/assets/next-arrow.png';
 
 export default {
   name: "DayView",
+  data() {
+    return {
+      arrow
+    }
+  },
   props: {
     day: {
       type: Number,
@@ -59,6 +73,27 @@ export default {
       }
       hours.push('12AM');
       return hours;
+    },
+    nextDay() {
+      let params = { year: this.year, month: this.month + 1, day: this.day + 1};
+      if (params.day > this.daysInMonth(params.year, params.month)) {
+        params.month += 1;
+        params.day = 1;
+      }
+      return params;
+    },
+    previousDay() {
+      let params = { year: this.year, month: this.month + 1, day: this.day - 1};
+      if (params.day < 1) {
+        params.month -= 1;
+        params.day = this.daysInMonth(params.year, params.month);
+      }
+      return params;
+    }
+  },
+  methods: {
+    daysInMonth(year, month) {
+      return new Date(year, month, 0).getDate();
     }
   }
 }
@@ -112,5 +147,30 @@ export default {
     top: 0;
     width: calc(100% - 2px);
     border: 1px solid grey;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  nav > h1 {
+    font-size: 2em;
+  }
+
+  .previous-day, .next-day {
+    display: inline;
+    height: 2em;
+  }
+
+  .previous-day > img {
+    height: 100%;
+    transform: scaleX(-1);
+  }
+
+  .next-day > img {
+    height: 100%;
   }
 </style>

@@ -1,19 +1,29 @@
-import { mount } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
+
 import MonthView from '@/views/MonthView';
+import router from '@/router.js';
+
+const localVue = createLocalVue();
+localVue.use(VueRouter);
 
 describe('MonthView', () => {
   const octoberWrapper = mount(MonthView, {
     propsData: {
       month: 9,
       year: 2019
-    }
+    },
+    localVue,
+    router,
   });
 
   const septemberWrapper = mount(MonthView, {
     propsData: {
       month: 8,
       year: 2019
-    }
+    },
+    localVue,
+    router,
   });
 
   it('Renders the correct month name', () => {
