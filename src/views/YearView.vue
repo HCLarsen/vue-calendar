@@ -12,8 +12,10 @@
     <div class="year">
       <ul class="months">
         <li v-for="month in 12" :key="month" class="month">
-          <h3 v-html="monthName(month-1)"></h3>
-          <Month :month="month-1" :year="year" />
+          <router-link :to="{ name: 'month', params: { month: month } }">
+            <h3 v-html="monthName(month-1)"></h3>
+            <Month :month="month-1" :year="year" />
+          </router-link>
         </li>
       </ul>
     </div>
@@ -67,6 +69,12 @@
   li.month {
     width: calc(93% / 3);
     padding: 0 1%;
+  }
+
+  li.month > a {
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
   }
 
   @media screen and (min-aspect-ratio: 1/1) {

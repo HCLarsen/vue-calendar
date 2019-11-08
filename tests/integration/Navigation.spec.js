@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import CalendarView from '@/views/CalendarView';
 // import YearView from '@/views/YearView';
-// import MonthView from '@/views/MonthView';
+import MonthView from '@/views/MonthView';
 // import DayView from '@/views/DayView';
 import router from '@/router.js';
 
@@ -39,6 +39,20 @@ describe('Navigation', () => {
     expect(wrapper.text()).toContain('2019');
     const months = wrapper.findAll('li.month');
     expect(months.length).toBe(12);
+  });
+
+  it('Navigates to clicked on month', () => {
+    const wrapper = mount(CalendarView, {
+      localVue,
+      router,
+    });
+    router.push("/2021");
+
+    const february = wrapper.findAll('li.month > a').at(1);
+    february.trigger('click');
+
+    expect(wrapper.find(MonthView).exists()).toBe(true);
+    expect(wrapper.find('h1').text()).toContain('February');
   });
 
   it('Navigates to previous month', () => {
