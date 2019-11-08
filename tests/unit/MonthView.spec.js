@@ -27,8 +27,8 @@ describe('MonthView', () => {
   });
 
   it('Renders the correct month name', () => {
-    expect(octoberWrapper.html()).toContain('October');
-    expect(septemberWrapper.html()).toContain('September');
+    expect(octoberWrapper.text()).toContain('October 2019');
+    expect(septemberWrapper.text()).toContain('September');
   });
 
   it('Renders grid of days', () => {

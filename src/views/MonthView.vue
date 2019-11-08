@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'month', params: { year: this.year, month: this.month} }" class="previous-month" >
         <img :src="arrow"/>
       </router-link>
-      <h1 v-html="monthName"></h1>
+      <h1 v-html="header"></h1>
       <router-link :to="{ name: 'month', params: { year: this.year, month: this.month + 2} }" class="next-month" >
         <img :src="arrow"/>
       </router-link>
@@ -41,6 +41,9 @@ export default {
     }
   },
   computed: {
+    header() {
+      return `${this.monthName} ${this.year}`
+    },
     monthName() {
       return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" });
     },
