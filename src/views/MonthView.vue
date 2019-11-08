@@ -1,11 +1,11 @@
 <template>
   <div>
     <nav>
-      <router-link :to="{ name: 'month', params: { year: this.year, month: this.month} }" class="previous-month" >
+      <router-link :to="{ name: 'month', params: previousMonth }" class="previous-month" >
         <img :src="arrow"/>
       </router-link>
       <h1 v-html="header"></h1>
-      <router-link :to="{ name: 'month', params: { year: this.year, month: this.month + 2} }" class="next-month" >
+      <router-link :to="{ name: 'month', params: nextMonth }" class="next-month" >
         <img :src="arrow"/>
       </router-link>
     </nav>
@@ -63,6 +63,22 @@ export default {
       } else {
         return [];
       }
+    },
+    previousMonth() {
+      let params = { year: this.year, month: this.month };
+      if (params.month < 1) {
+        params.year -= 1;
+        params.month = 12;
+      }
+      return params;
+    },
+    nextMonth() {
+      let params = { year: this.year, month: this.month + 2 };
+      if (params.month > 12) {
+        params.year += 1;
+        params.month = 1;
+      }
+      return params;
     }
   },
   methods: {

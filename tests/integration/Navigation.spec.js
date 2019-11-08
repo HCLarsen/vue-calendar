@@ -60,12 +60,12 @@ describe('Navigation', () => {
       localVue,
       router,
     });
-    router.push("/2019/11");
+    router.push("/2019/1");
 
     const nextYear = wrapper.find('a.previous-month')
     nextYear.trigger('click');
 
-    expect(wrapper.text()).toContain('October');
+    expect(wrapper.text()).toContain('December 2018');
   });
 
   it('Navigates to next month', () => {
@@ -73,12 +73,12 @@ describe('Navigation', () => {
       localVue,
       router,
     });
-    router.push("/2019/9");
+    router.push("/2019/12");
 
     const nextMonth = wrapper.find('a.next-month');
     nextMonth.trigger('click');
 
-    expect(wrapper.text()).toContain('October');
+    expect(wrapper.text()).toContain('January 2020');
   });
 
   it('Navigates to previous day', () => {
