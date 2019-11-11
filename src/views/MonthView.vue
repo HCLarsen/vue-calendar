@@ -4,16 +4,23 @@
       <router-link :to="{ name: 'month', params: previousMonth }" class="previous-month" >
         <img :src="arrow"/>
       </router-link>
-      <h1 v-html="header"></h1>
+      <h1>
+        <span v-html="header"></span>
+        <router-link :to="{ name: 'year', params: { year: year } }" class="year" v-html="year"></router-link>
+      </h1>
       <router-link :to="{ name: 'month', params: nextMonth }" class="next-month" >
         <img :src="arrow"/>
       </router-link>
     </nav>
     <div class="month">
       <ul class="days">
-        <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
+        <router-link :to="{ name: 'month', params: previousMonth }" class="previous">
+          <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
+        </router-link>
         <li v-for="day in daysInThisMonth" :key="day" class="day"><p v-html="day"></p></li>
-        <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
+        <router-link :to="{ name: 'month', params: nextMonth }" class="next">
+          <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
+        </router-link>
       </ul>
     </div>
   </div>
@@ -42,7 +49,7 @@ export default {
   },
   computed: {
     header() {
-      return `${this.monthName} ${this.year}`
+      return `${this.monthName} `
     },
     monthName() {
       return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" });

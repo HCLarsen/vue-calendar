@@ -26,8 +26,8 @@ describe('MonthView', () => {
     router,
   });
 
-  it('Renders the correct month name', () => {
-    expect(octoberWrapper.text()).toContain('October 2019');
+  it('Renders the correct header name', () => {
+    expect(octoberWrapper.text()).toContain('October  2019');
     expect(septemberWrapper.text()).toContain('September');
   });
 
