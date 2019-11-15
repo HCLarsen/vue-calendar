@@ -177,6 +177,10 @@ export default {
     font-size: 2em;
   }
 
+  nav > h1 > a {
+    color: inherit;
+  }
+
   .previous-day, .next-day {
     display: inline;
     height: 2em;
