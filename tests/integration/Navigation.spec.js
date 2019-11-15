@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import CalendarView from '@/views/CalendarView';
 import YearView from '@/views/YearView';
 import MonthView from '@/views/MonthView';
-// import DayView from '@/views/DayView';
+import DayView from '@/views/DayView';
 import router from '@/router.js';
 
 const localVue = createLocalVue();
@@ -106,6 +106,16 @@ describe('Month navigation', () => {
 
     expect(wrapper.find(YearView).exists()).toBe(true);
     expect(wrapper.text()).toContain('2019');
+  });
+
+  it('Navigates to day', () => {
+    router.push("/2019/11");
+
+    const lastDay = wrapper.findAll('li.day > a').at(29);
+    lastDay.trigger('click');
+
+    expect(wrapper.find(DayView).exists()).toBe(true);
+    expect(wrapper.text()).toContain('Saturday, November 30, 2019');
   });
 });
 

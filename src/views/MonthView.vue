@@ -17,7 +17,11 @@
         <router-link :to="{ name: 'month', params: previousMonth }" class="previous">
           <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
         </router-link>
-        <li v-for="day in daysInThisMonth" :key="day" class="day"><p v-html="day"></p></li>
+        <li v-for="day in daysInThisMonth" :key="day" class="day">
+          <router-link :to="{ name: 'day', params: dayParams(day) }">
+            <p v-html="day"></p>
+          </router-link>
+        </li>
         <router-link :to="{ name: 'month', params: nextMonth }" class="next">
           <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
         </router-link>
@@ -91,6 +95,11 @@ export default {
   methods: {
     daysInMonth(month) {
       return new Date(this.year, month + 1, 0).getDate();
+    },
+    dayParams(day) {
+      let params = { year: this.year, month: this.month + 1 };
+      params.day = day;
+      return params;
     },
     range(size, startAt = 0) {
       return [...Array(size).keys()].map(i => i + startAt);
