@@ -111,7 +111,7 @@ describe('Month navigation', () => {
   it('Navigates to day', () => {
     router.push("/2019/11");
 
-    const lastDay = wrapper.findAll('li.day > a').at(29);
+    const lastDay = wrapper.findAll('li.day:not(.other-month) > a').at(29);
     lastDay.trigger('click');
 
     expect(wrapper.find(DayView).exists()).toBe(true);

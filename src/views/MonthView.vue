@@ -14,17 +14,21 @@
     </nav>
     <div class="month">
       <ul class="days">
-        <router-link :to="{ name: 'month', params: previousMonth }" class="previous">
-          <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
-        </router-link>
+        <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month">
+          <router-link :to="{ name: 'month', params: previousMonth }" class="previous">
+            <p v-html="day"></p>
+          </router-link>
+        </li>
         <li v-for="day in daysInThisMonth" :key="day" class="day">
           <router-link :to="{ name: 'day', params: dayParams(day) }">
             <p v-html="day"></p>
           </router-link>
         </li>
-        <router-link :to="{ name: 'month', params: nextMonth }" class="next">
-          <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
-        </router-link>
+        <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month">
+          <router-link :to="{ name: 'month', params: nextMonth }" class="next">
+            <p v-html="day"></p>
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>
@@ -135,7 +139,16 @@ export default {
     background: inherit;
   }
 
-  li.day > p {
+  li.day > a {
+    color: inherit;
+    text-decoration: none;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  li.day p {
     width: calc(100% - 0.2em);
     padding-right: 0.2em;
     margin: 0;
@@ -156,6 +169,10 @@ export default {
 
   nav > h1 {
     font-size: 2em;
+  }
+
+  nav > h1 > a {
+    color: inherit;
   }
 
   .previous-month, .next-month {
