@@ -125,12 +125,12 @@ describe('Day navigation', () => {
       localVue,
       router,
     });
-    router.push("/2019/10/30");
+    router.push("/2019/1/1");
 
     const nextDay = wrapper.find('a.previous-day');
     nextDay.trigger('click');
 
-    expect(wrapper.text()).toContain('Tuesday, October 29, 2019');
+    expect(wrapper.text()).toContain('Monday, December 31, 2018');
   });
 
   it('Navigates to next day', () => {
@@ -138,11 +138,11 @@ describe('Day navigation', () => {
       localVue,
       router,
     });
-    router.push("/2019/10/31");
+    router.push("/2019/12/31");
 
     const nextMonth = wrapper.find('a.next-day');
     nextMonth.trigger('click');
 
-    expect(wrapper.text()).toContain('Friday, November 1, 2019');
+    expect(wrapper.text()).toContain('Wednesday, January 1, 2020');
   });
 });

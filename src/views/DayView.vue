@@ -80,12 +80,21 @@ export default {
         params.month += 1;
         params.day = 1;
       }
+      if (params.month > 12) {
+        params.year += 1;
+        params.month = 1;
+      }
       return params;
     },
     previousDay() {
       let params = { year: this.year, month: this.month + 1, day: this.day - 1};
       if (params.day < 1) {
         params.month -= 1;
+        params.day = this.daysInMonth(params.year, params.month);
+      }
+      if (params.month < 1) {
+        params.year -= 1;
+        params.month = 12;
         params.day = this.daysInMonth(params.year, params.month);
       }
       return params;
