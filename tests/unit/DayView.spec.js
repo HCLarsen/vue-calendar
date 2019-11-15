@@ -1,4 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
+import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import DayView from '@/views/DayView'
@@ -20,7 +21,7 @@ describe('DayView', () => {
 
   it('Renders October 31, 2019', () => {
     const header = wrapper.find('h1#date');
-    expect(header.text()).toContain('Thursday, October 31, 2019');
+    expect(cleanText(header.text())).toContain('Thursday, October 31, 2019');
   });
 
   it('Renders November 5, 1955', () => {
@@ -34,7 +35,7 @@ describe('DayView', () => {
       router,
     });
 
-    expect(fluxCapacitorDay.text()).toContain('Saturday, November 5, 1955');
+    expect(cleanText(fluxCapacitorDay.text())).toContain('Saturday, November 5, 1955');
   });
 
   it('Renders 24 hours of a day', () => {

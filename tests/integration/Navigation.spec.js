@@ -1,4 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
+import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import CalendarView from '@/views/CalendarView';
@@ -115,34 +116,51 @@ describe('Month navigation', () => {
     lastDay.trigger('click');
 
     expect(wrapper.find(DayView).exists()).toBe(true);
-    expect(wrapper.text()).toContain('Saturday, November 30, 2019');
+    expect(cleanText(wrapper.text())).toContain('Saturday, November 30, 2019');
   });
 });
 
 describe('Day navigation', () => {
+  const wrapper = mount(CalendarView, {
+    localVue,
+    router,
+  });
+
   it('Navigates to previous day', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2019/1/1");
 
     const nextDay = wrapper.find('a.previous-day');
     nextDay.trigger('click');
 
-    expect(wrapper.text()).toContain('Monday, December 31, 2018');
+    expect(cleanText(wrapper.text())).toContain('Monday, December 31, 2018');
   });
 
   it('Navigates to next day', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2019/12/31");
 
     const nextMonth = wrapper.find('a.next-day');
     nextMonth.trigger('click');
 
-    expect(wrapper.text()).toContain('Wednesday, January 1, 2020');
+    expect(cleanText(wrapper.text())).toContain('Wednesday, January 1, 2020');
+  });
+
+  it('Navigates to month', () => {
+    router.push("/2019/11/15");
+
+    const month = wrapper.find('a.month');
+    month.trigger('click');
+
+    expect(wrapper.find(MonthView).exists()).toBe(true);
+    expect(cleanText(wrapper.text())).toContain('November 2019');
+  });
+
+  it('Navigates to year', () => {
+    router.push("/2019/11/16");
+
+    const month = wrapper.find('a.year');
+    month.trigger('click');
+
+    expect(wrapper.find(YearView).exists()).toBe(true);
+    expect(cleanText(wrapper.text())).toContain('2019');
   });
 });

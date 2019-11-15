@@ -1,4 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
+import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import CalendarView from '@/views/CalendarView';
@@ -53,7 +54,7 @@ describe('CalendarView', () => {
     router.push("/2019/10/31");
 
     expect(wrapper.find(DayView).exists()).toBe(true);
-    expect(wrapper.text()).toContain('Thursday, October 31');
+    expect(cleanText(wrapper.text())).toContain('Thursday, October 31, 2019');
   });
 
   it('Redirects invalid path to current month', () => {

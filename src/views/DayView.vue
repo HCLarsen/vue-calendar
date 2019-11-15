@@ -4,7 +4,12 @@
       <router-link :to="{ name: 'day', params: previousDay }" class="previous-day" >
         <img :src="arrow"/>
       </router-link>
-      <h1 id="date" v-html="header"></h1>
+      <h1 id="date">
+        <span v-html="`${weekday}, `"></span>
+        <router-link :to="{ name: 'month', params: { monthLink } }" class="month" v-html="monthName"></router-link>
+        <span v-html="` ${day}, `"></span>
+        <router-link :to="{ name: 'year', params: { year } }" class="year" v-html="year"></router-link>
+      </h1>
       <router-link :to="{ name: 'day', params: nextDay }" class="next-day" >
         <img :src="arrow"/>
       </router-link>
@@ -98,6 +103,9 @@ export default {
         params.day = this.daysInMonth(params.year, params.month);
       }
       return params;
+    },
+    monthLink() {
+      return this.month + 1;
     }
   },
   methods: {
