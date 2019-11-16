@@ -6,10 +6,15 @@ import CalendarView from '@/views/CalendarView';
 import YearView from '@/views/YearView';
 import MonthView from '@/views/MonthView';
 import DayView from '@/views/DayView';
-import router from '@/router.js';
+// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+});
 
 describe('Year Navigation', () => {
   it('Navigates to previous year', () => {

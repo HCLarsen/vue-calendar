@@ -6,10 +6,14 @@ import CalendarView from '@/views/CalendarView';
 import YearView from '@/views/YearView';
 import MonthView from '@/views/MonthView';
 import DayView from '@/views/DayView';
-import router from '@/router.js';
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+});
 
 describe('CalendarView', () => {
   it('Redirects home path to current month', () => {

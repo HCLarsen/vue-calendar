@@ -3,10 +3,15 @@ import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import DayView from '@/views/DayView'
-import router from '@/router.js';
+// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+});
 
 describe('DayView', () => {
   const wrapper = mount(DayView, {

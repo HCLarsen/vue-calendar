@@ -2,10 +2,15 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
 
 import YearView from '@/views/YearView';
-import router from '@/router.js';
+// import router from '@/router.js';
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+});
 
 describe('YearView', () => {
   const wrapper = mount(YearView, {
@@ -19,14 +24,6 @@ describe('YearView', () => {
   it('Renders proper header', () => {
     const header = wrapper.find('h1');
     expect(header.text()).toContain('2019');
-
-    const previousYear = wrapper.find('a.previous-year');
-    expect(previousYear.exists()).toBe(true);
-    expect(previousYear.attributes('href')).toBe('/2018');
-
-    const nextYear = wrapper.find('a.next-year')
-    expect(nextYear.exists()).toBe(true);
-    expect(nextYear.attributes('href')).toBe('/2020');
   });
 
   it('Renders twelve months', () => {

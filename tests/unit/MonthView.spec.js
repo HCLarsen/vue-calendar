@@ -2,10 +2,15 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
 
 import MonthView from '@/views/MonthView';
-import router from '@/router.js';
+// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+});
 
 describe('MonthView', () => {
   const octoberWrapper = mount(MonthView, {
