@@ -3,7 +3,6 @@ import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import DayView from '@/views/DayView'
-// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);

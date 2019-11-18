@@ -15,34 +15,25 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
 });
 
+const wrapper = mount(CalendarView, {
+  localVue,
+  router,
+});
+
 describe('CalendarView', () => {
   it('Redirects home path to current month', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
-
     expect(wrapper.find(MonthView).exists()).toBe(true);
     const monthName = new Date().toLocaleDateString("en-CA", { month: "long" });
     expect(wrapper.text()).toContain(monthName);
   });
 
   it('Renders 2019', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2019");
 
     expect(wrapper.find(YearView).exists()).toBe(true);
   });
 
   it('Renders September 2019', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
-
     router.push("/2019/9");
 
     expect(wrapper.find(MonthView).exists()).toBe(true);
@@ -50,11 +41,6 @@ describe('CalendarView', () => {
   });
 
   it('Renders October 31, 2019', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
-
     router.push("/2019/10/31");
 
     expect(wrapper.find(DayView).exists()).toBe(true);
@@ -62,10 +48,6 @@ describe('CalendarView', () => {
   });
 
   it('Redirects invalid path to current month', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2018"); // Prevents unresolved promise warning
     router.push("/asdfsadf");
 
@@ -73,11 +55,6 @@ describe('CalendarView', () => {
   });
 
   it('Redirects invalid month path', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
-
     router.push("/2018"); // Prevents unresolved promise warning
     router.push("/2019/131");
 
@@ -85,10 +62,6 @@ describe('CalendarView', () => {
   })
 
   it('Redirects invalid day path', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2018"); // Prevents unresolved promise warning
     router.push("/2019/10/123");
 

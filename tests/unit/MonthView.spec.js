@@ -1,8 +1,8 @@
 import { mount, createLocalVue } from '@vue/test-utils';
+import { cleanText } from './../testUtils.js';
 import VueRouter from 'vue-router';
 
 import MonthView from '@/views/MonthView';
-// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -32,7 +32,7 @@ describe('MonthView', () => {
   });
 
   it('Renders the correct header name', () => {
-    expect(octoberWrapper.text()).toContain('October  2019');
+    expect(cleanText(octoberWrapper.text())).toContain('October 2019');
     expect(septemberWrapper.text()).toContain('September');
   });
 

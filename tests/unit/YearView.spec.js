@@ -2,7 +2,6 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
 
 import YearView from '@/views/YearView';
-// import router from '@/router.js';
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)

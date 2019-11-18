@@ -6,7 +6,6 @@ import CalendarView from '@/views/CalendarView';
 import YearView from '@/views/YearView';
 import MonthView from '@/views/MonthView';
 import DayView from '@/views/DayView';
-// import router from '@/router.js';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -16,12 +15,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
 });
 
+const wrapper = mount(CalendarView, {
+  localVue,
+  router,
+});
+
 describe('Year Navigation', () => {
   it('Navigates to previous year', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2020");
 
     const previousYear = wrapper.find('a.previous-year')
@@ -33,10 +33,6 @@ describe('Year Navigation', () => {
   });
 
   it('Navigates to next year', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2018");
 
     const nextYear = wrapper.find('a.next-year')
@@ -48,26 +44,17 @@ describe('Year Navigation', () => {
   });
 
   it('Navigates to clicked on month', () => {
-    const wrapper = mount(CalendarView, {
-      localVue,
-      router,
-    });
     router.push("/2021");
 
     const february = wrapper.findAll('li.month > a').at(1);
     february.trigger('click');
 
     expect(wrapper.find(MonthView).exists()).toBe(true);
-    expect(wrapper.find('h1').text()).toContain('February');
+    expect(cleanText(wrapper.find('h1').text())).toContain('February 2021');
   });
 });
 
 describe('Month navigation', () => {
-  const wrapper = mount(CalendarView, {
-    localVue,
-    router,
-  });
-
   it('Navigates to previous month', () => {
     router.push("/2019/1");
 
@@ -126,11 +113,6 @@ describe('Month navigation', () => {
 });
 
 describe('Day navigation', () => {
-  const wrapper = mount(CalendarView, {
-    localVue,
-    router,
-  });
-
   it('Navigates to previous day', () => {
     router.push("/2019/1/1");
 
