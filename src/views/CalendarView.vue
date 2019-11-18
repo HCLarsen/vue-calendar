@@ -45,8 +45,6 @@ export default {
         redirect: this.todaysPath()
       },
     ]);
-
-    console.log(this.$router);
   },
   router: new VueRouter({
     mode: 'history',
