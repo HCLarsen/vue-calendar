@@ -1,21 +1,25 @@
 <template>
   <div class="year">
     <nav>
-      <router-link :to="{ name: 'year', params: { year: this.year - 1} }" class="previous-year" >
+      <router-link v-if="routerActive" :to="{ name: 'year', params: { year: this.year - 1} }" class="previous-year" >
         <img :src="arrow"/>
       </router-link>
       <h1 v-html="year"></h1>
-      <router-link :to="{ name: 'year', params: { year: this.year + 1} }" class="next-year" >
+      <router-link v-if="routerActive" :to="{ name: 'year', params: { year: this.year + 1} }" class="next-year" >
         <img :src="arrow"/>
       </router-link>
     </nav>
     <div class="year">
       <ul class="months">
         <li v-for="month in 12" :key="month" class="month">
-          <router-link :to="{ name: 'month', params: { month: month } }">
+          <router-link v-if="routerActive" :to="{ name: 'month', params: { month: month } }">
             <h3 v-html="monthName(month-1)"></h3>
             <Month :month="month-1" :year="year" />
           </router-link>
+          <div v-else>
+            <h3 v-html="monthName(month-1)"></h3>
+            <Month :month="month-1" :year="year" />
+          </div>
         </li>
       </ul>
     </div>
@@ -37,6 +41,10 @@
     props: {
       year: {
         type: Number
+      },
+      routerActive: {
+        type: Boolean,
+        default: false,
       }
     },
     methods: {

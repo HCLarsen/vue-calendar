@@ -13,8 +13,13 @@ import YearView from '@/views/YearView.vue';
 
 export default {
   name: 'CalendarView',
+  data() {
+    return {
+      routesDefined: false
+    }
+  },
   created() {
-    if(this.routeNameAlreadyRegistered(this.$router, 'year')){
+    if(this.routesDefined) {
       return;
     }
 
@@ -45,9 +50,12 @@ export default {
         redirect: this.todaysPath()
       },
     ]);
+
+    this.routesDefined = true;
   },
   router: new VueRouter({
     mode: 'history',
+    base: process.env.BASE_URL,
   }),
   methods: {
     todaysPath() {
@@ -58,20 +66,23 @@ export default {
     },
     yearProps(route) {
       return {
-        year: parseInt(route.params.year, 10)
+        year: parseInt(route.params.year, 10),
+        routerActive: true
       };
     },
     monthProps(route) {
       return {
         year: parseInt(route.params.year, 10),
-        month: parseInt(route.params.month - 1, 10)
+        month: parseInt(route.params.month - 1, 10),
+        routerActive: true
       };
     },
     dayProps(route) {
       return {
         year: parseInt(route.params.year, 10),
         month: parseInt(route.params.month - 1, 10),
-        day: parseInt(route.params.day, 10)
+        day: parseInt(route.params.day, 10),
+        routerActive: true
       };
     },
     routeNameAlreadyRegistered(router, routeName) {

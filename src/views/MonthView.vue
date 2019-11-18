@@ -1,33 +1,37 @@
 <template>
   <div>
     <nav>
-      <router-link :to="{ name: 'month', params: previousMonth }" class="previous-month" >
+      <router-link v-if="routerActive" :to="{ name: 'month', params: previousMonth }" class="previous-month" >
         <img :src="arrow"/>
       </router-link>
       <h1>
         <span v-html="header"></span>
-        <router-link :to="{ name: 'year', params: { year: year } }" class="year" v-html="year"></router-link>
+        <router-link v-if="routerActive" :to="{ name: 'year', params: { year: year } }" class="year" v-html="year"></router-link>
+        <span v-else class="year" v-html="year"></span>
       </h1>
-      <router-link :to="{ name: 'month', params: nextMonth }" class="next-month" >
+      <router-link v-if="routerActive" :to="{ name: 'month', params: nextMonth }" class="next-month" >
         <img :src="arrow"/>
       </router-link>
     </nav>
     <div class="month">
       <ul class="days">
         <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month">
-          <router-link :to="{ name: 'month', params: previousMonth }" class="previous">
+          <router-link v-if="routerActive" :to="{ name: 'month', params: previousMonth }" class="previous">
             <p v-html="day"></p>
           </router-link>
+          <p v-else v-html="day"></p>
         </li>
         <li v-for="day in daysInThisMonth" :key="day" class="day">
-          <router-link :to="{ name: 'day', params: dayParams(day) }">
+          <router-link v-if="routerActive" :to="{ name: 'day', params: dayParams(day) }">
             <p v-html="day"></p>
           </router-link>
+          <p v-else v-html="day"></p>
         </li>
         <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month">
-          <router-link :to="{ name: 'month', params: nextMonth }" class="next">
+          <router-link v-if="routerActive" :to="{ name: 'month', params: nextMonth }" class="next">
             <p v-html="day"></p>
           </router-link>
+          <p v-else v-html="day"></p>
         </li>
       </ul>
     </div>
@@ -53,6 +57,10 @@ export default {
     },
     year: {
       type: Number
+    },
+    routerActive: {
+      type: Boolean,
+      default: false,
     }
   },
   computed: {

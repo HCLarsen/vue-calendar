@@ -1,16 +1,7 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { cleanText } from './../testUtils.js';
-import VueRouter from 'vue-router';
 
 import DayView from '@/views/DayView'
-
-const localVue = createLocalVue();
-localVue.use(VueRouter);
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-});
 
 describe('DayView', () => {
   const wrapper = mount(DayView, {
@@ -19,8 +10,6 @@ describe('DayView', () => {
       month: 9,
       year: 2019
     },
-    localVue,
-    router,
   });
 
   it('Renders October 31, 2019', () => {
@@ -35,8 +24,6 @@ describe('DayView', () => {
         month: 10,
         year: 1955
       },
-      localVue,
-      router,
     });
 
     expect(cleanText(fluxCapacitorDay.text())).toContain('Saturday, November 5, 1955');

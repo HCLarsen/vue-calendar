@@ -1,16 +1,7 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { cleanText } from './../testUtils.js';
-import VueRouter from 'vue-router';
 
 import MonthView from '@/views/MonthView';
-
-const localVue = createLocalVue();
-localVue.use(VueRouter);
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-});
 
 describe('MonthView', () => {
   const octoberWrapper = mount(MonthView, {
@@ -18,8 +9,6 @@ describe('MonthView', () => {
       month: 9,
       year: 2019
     },
-    localVue,
-    router,
   });
 
   const septemberWrapper = mount(MonthView, {
@@ -27,8 +16,6 @@ describe('MonthView', () => {
       month: 8,
       year: 2019
     },
-    localVue,
-    router,
   });
 
   it('Renders the correct header name', () => {

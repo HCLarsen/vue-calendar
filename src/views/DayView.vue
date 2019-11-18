@@ -1,16 +1,18 @@
 <template>
   <div class="dayview">
     <nav>
-      <router-link :to="{ name: 'day', params: previousDay }" class="previous-day" >
+      <router-link v-if="routerActive" :to="{ name: 'day', params: previousDay }" class="previous-day" >
         <img :src="arrow"/>
       </router-link>
       <h1 id="date">
         <span v-html="`${weekday}, `"></span>
-        <router-link :to="{ name: 'month', params: { monthLink } }" class="month" v-html="monthName"></router-link>
+        <router-link v-if="routerActive" :to="{ name: 'month', params: { monthLink } }" class="month" v-html="monthName"></router-link>
+        <span v-else class="month" v-html="monthName"></span>
         <span v-html="` ${day}, `"></span>
-        <router-link :to="{ name: 'year', params: { year } }" class="year" v-html="year"></router-link>
+        <router-link v-if="routerActive" :to="{ name: 'year', params: { year } }" class="year" v-html="year"></router-link>
+        <span v-else class="year" v-html="year"></span>
       </h1>
-      <router-link :to="{ name: 'day', params: nextDay }" class="next-day" >
+      <router-link v-if="routerActive" :to="{ name: 'day', params: nextDay }" class="next-day" >
         <img :src="arrow"/>
       </router-link>
     </nav>
@@ -55,6 +57,10 @@ export default {
     },
     year: {
       type: Number
+    },
+    routerActive: {
+      type: Boolean,
+      default: false,
     }
   },
   computed: {

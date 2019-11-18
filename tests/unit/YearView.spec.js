@@ -1,20 +1,9 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-import VueRouter from 'vue-router';
+import { mount } from '@vue/test-utils';
 
 import YearView from '@/views/YearView';
 
-const localVue = createLocalVue()
-localVue.use(VueRouter)
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-});
-
 describe('YearView', () => {
   const wrapper = mount(YearView, {
-    localVue,
-    router,
     propsData: {
       year: 2019
     }
