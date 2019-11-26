@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import VueRouter from "vue-router";
 
 import DayView from '@/views/DayView.vue';
 import MonthView from '@/views/MonthView.vue';
@@ -53,10 +52,6 @@ export default {
 
     this.routesDefined = true;
   },
-  router: new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-  }),
   methods: {
     todaysPath() {
       const today = new Date();
@@ -94,9 +89,9 @@ export default {
     },
     getParentRouterPath(instance) {
       try {
-        return instance.$parent.$route.meta.basePath;
+        return instance.$parent.$route.path + "/";
       } catch (e) {
-        return "";
+        return "/";
       }
     }
   }

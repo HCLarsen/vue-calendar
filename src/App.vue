@@ -1,15 +1,30 @@
 <template>
   <div id="app">
-    <CalendarView/>
+    <nav id="nav">
+      <router-link :to="{ name: 'calendar' }">Calendar View With Router</router-link>
+      <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
+      <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import CalendarView from '@/views/CalendarView';
-
   export default {
-    components: {
-      CalendarView
+    computed: {
+      thisMonth() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        return { year: year, month: month };
+      },
+      today() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        return { year: year, month: month, day: day };
+      }
     }
   }
 </script>
@@ -32,6 +47,7 @@
 }
 
 #nav a {
+  margin: 0 10px;
   font-weight: bold;
   color: #2c3e50;
 }
