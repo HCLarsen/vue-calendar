@@ -6,13 +6,14 @@ import CalendarView from '@/views/CalendarView';
 import YearView from '@/views/YearView';
 import MonthView from '@/views/MonthView';
 import DayView from '@/views/DayView';
+import routes from '@/router/routes.js';
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  routes: routes.map((e) => { e.path = '/' + e.path; return e; }),
 });
 
 const wrapper = mount(CalendarView, {
