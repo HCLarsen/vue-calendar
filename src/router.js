@@ -8,6 +8,21 @@ import routes from '@/router/routes.js';
 
 Vue.use(Router)
 
+function thisMonth() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  return { year: year, month: month };
+}
+
+function today() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const day = today.getDate();
+  return { year: year, month: month, day: day };
+}
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -29,13 +44,13 @@ export default new Router({
       path: '/month',
       name: 'month-view',
       component: MonthView,
-      props: { year: 2019, month: 10 }
+      props: thisMonth
     },
     {
       path: '/day',
       name: 'day-view',
       component: DayView,
-      props: { year: 2019, month: 10, day: 23 }
+      props: today
     }
   ]
 })

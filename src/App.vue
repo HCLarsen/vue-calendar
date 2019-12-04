@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <nav id="nav">
-      <router-link :to="{ name: 'calendar' }">Calendar View With Router</router-link>
-      <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
-      <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
+      <router-link to="/calendar/">Calendar View With Router</router-link>
+      <router-link to="/month">Month View</router-link>
+      <router-link to="/day">Day View</router-link>
     </nav>
     <router-view></router-view>
   </div>
@@ -11,21 +11,6 @@
 
 <script>
   export default {
-    computed: {
-      thisMonth() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth() + 1;
-        return { year: year, month: month };
-      },
-      today() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth() + 1;
-        const day = today.getDate();
-        return { year: year, month: month, day: day };
-      }
-    }
   }
 </script>
 
