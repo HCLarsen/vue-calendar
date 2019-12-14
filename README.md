@@ -1,36 +1,11 @@
-# vue-calendar
+# Vue Calendar
 
 A series of simple calendar based components for Vue.js projects.
 
-## Project setup
-```
-npm install
-```
+## Usage
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+There are two ways to use this library. First, is using the individual YearView, MonthView, and DayView. Second, is to use the CalendarView component, which allows navigating to specific dates using the router. Using this component requires VueRouter being included in the project.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Contributions
 
-### Run your tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+There are still many features to be added, including I18N and accessibility. Contributions to those fields, as well as feedback on suggested features, are always welcome.
