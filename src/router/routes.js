@@ -53,11 +53,6 @@ export default [
     props: dayProps
   },
   {
-    path: '',
-    name: 'home',
-    redirect: todaysPath()
-  },
-  {
     path: '*',
     redirect: todaysPath()
   },
