@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="month-view">
     <nav>
       <router-link v-if="routerActive" :to="{ name: 'month', params: previousMonth }" class="previous-month" >
         <img :src="arrow"/>

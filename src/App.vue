@@ -41,6 +41,7 @@
 
   width: 90%;
   margin: auto;
+  margin-bottom: 25px;
 }
 #nav {
   padding: 30px;
