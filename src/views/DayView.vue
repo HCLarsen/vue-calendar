@@ -1,5 +1,5 @@
 <template>
-  <div class="dayview">
+  <div class="day-view">
     <nav>
       <router-link v-if="routerActive" :to="{ name: 'day', params: previousDay }" class="previous-day" >
         <img :src="arrow"/>

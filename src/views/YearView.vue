@@ -1,5 +1,5 @@
 <template>
-  <div class="year">
+  <div class="year-view">
     <nav>
       <router-link v-if="routerActive" :to="{ name: 'year', params: { year: this.year - 1} }" class="previous-year" >
         <img :src="arrow"/>
