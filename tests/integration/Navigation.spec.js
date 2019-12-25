@@ -62,7 +62,7 @@ describe('Month navigation', () => {
     const nextYear = wrapper.find('a.previous-month');
     nextYear.trigger('click');
 
-    expect(wrapper.text()).toContain('December  2018');
+    expect(cleanText(wrapper.text())).toContain('December 2018');
   });
 
   it('Navigates to next month', () => {
@@ -71,7 +71,7 @@ describe('Month navigation', () => {
     const nextMonth = wrapper.find('a.next-month');
     nextMonth.trigger('click');
 
-    expect(wrapper.text()).toContain('January  2020');
+    expect(cleanText(wrapper.text())).toContain('January 2020');
   });
 
   it('Navigates to previous month using second link', () => {
@@ -80,7 +80,7 @@ describe('Month navigation', () => {
     const nextYear = wrapper.find('a.previous');
     nextYear.trigger('click');
 
-    expect(wrapper.text()).toContain('October  2019');
+    expect(cleanText(wrapper.text())).toContain('October 2019');
   });
 
   it('Navigates to next month using second link', () => {
@@ -89,7 +89,7 @@ describe('Month navigation', () => {
     const nextYear = wrapper.find('a.next');
     nextYear.trigger('click');
 
-    expect(wrapper.text()).toContain('July  2019');
+    expect(cleanText(wrapper.text())).toContain('July 2019');
   });
 
   it('Navigates to year', () => {
