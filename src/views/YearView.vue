@@ -42,6 +42,10 @@
       year: {
         type: Number
       },
+      lang: {
+        type: String,
+        default: 'en',
+      },
       routerActive: {
         type: Boolean,
         default: false,
@@ -49,7 +53,7 @@
     },
     methods: {
       monthName(month) {
-        return new Date(0, month).toLocaleDateString("en-CA", { month: "long" });
+        return new Date(0, month).toLocaleDateString(this.lang, { month: "long" });
       },
       daysInMonth(month) {
         return new Date(this.year, month + 1, 0).getDate();

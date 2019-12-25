@@ -32,4 +32,16 @@ describe('MonthView', () => {
     const days = septemberWrapper.findAll('li.day');
     expect(days.length).toBe(35);
   });
+
+  it('Renders in french', () => {
+    const frenchWrapper = mount(MonthView, {
+      propsData: {
+        month: 9,
+        year: 2019,
+        lang: 'fr'
+      },
+    });
+
+    expect(cleanText(frenchWrapper.text())).toContain('octobre 2019');
+  });
 })

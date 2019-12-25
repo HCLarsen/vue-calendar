@@ -58,6 +58,10 @@ export default {
     year: {
       type: Number
     },
+    lang: {
+      type: String,
+      default: 'en',
+    },
     routerActive: {
       type: Boolean,
       default: false,
@@ -65,10 +69,10 @@ export default {
   },
   computed: {
     header() {
-      return `${this.monthName} `
+      return `${this.monthName} `;
     },
     monthName() {
-      return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" });
+      return new Date(this.year, this.month).toLocaleDateString(this.lang, { month: "long" });
     },
     daysInThisMonth() {
       return this.range(this.daysInMonth(this.month), 1);

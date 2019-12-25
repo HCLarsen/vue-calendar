@@ -58,6 +58,10 @@ export default {
     year: {
       type: Number
     },
+    lang: {
+      type: String,
+      default: 'en',
+    },
     routerActive: {
       type: Boolean,
       default: false,
@@ -68,10 +72,10 @@ export default {
       return `${this.weekday}, ${this.monthName} ${this.day}, ${this.year}`
     },
     weekday() {
-      return new Date(this.year, this.month, this.day).toLocaleDateString("en-CA", { weekday: "long" })
+      return new Date(this.year, this.month, this.day).toLocaleDateString(this.lang, { weekday: "long" })
     },
     monthName() {
-      return new Date(this.year, this.month).toLocaleDateString("en-CA", { month: "long" })
+      return new Date(this.year, this.month).toLocaleDateString(this.lang, { month: "long" })
     },
     hours() {
       const hours = ['12AM'];

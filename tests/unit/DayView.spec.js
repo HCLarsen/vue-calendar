@@ -29,6 +29,19 @@ describe('DayView', () => {
     expect(cleanText(fluxCapacitorDay.text())).toContain('Saturday, November 5, 1955');
   });
 
+  it('Renders in French', () => {
+    const VictoriaDay = mount(DayView, {
+      propsData: {
+        day: 20,
+        month: 4,
+        year: 2019,
+        lang: 'fr',
+      },
+    });
+
+    expect(cleanText(VictoriaDay.text())).toContain('lundi, mai 20, 2019');
+  });
+
   it('Renders 24 hours of a day', () => {
     const hours = wrapper.findAll('li.hour');
     expect(hours.length).toBe(25);
