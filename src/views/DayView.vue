@@ -1,21 +1,7 @@
 <template>
   <div class="day-view">
-    <nav>
-      <router-link v-if="routerActive" :to="{ name: 'day', params: previousDay }" class="previous-day" >
-        <img :src="arrow"/>
-      </router-link>
-      <h1 id="date">
-        <span v-html="`${weekday}, `"></span>
-        <router-link v-if="routerActive" :to="{ name: 'month', params: { monthLink } }" class="month" v-html="monthName"></router-link>
-        <span v-else class="month" v-html="monthName"></span>
-        <span v-html="` ${day}, `"></span>
-        <router-link v-if="routerActive" :to="{ name: 'year', params: { year } }" class="year" v-html="year"></router-link>
-        <span v-else class="year" v-html="year"></span>
-      </h1>
-      <router-link v-if="routerActive" :to="{ name: 'day', params: nextDay }" class="next-day" >
-        <img :src="arrow"/>
-      </router-link>
-    </nav>
+    <Header v-if="routerActive" :day="day" :month="month" :year="year" :lang="lang"/>
+    <h1 v-else v-html="header"></h1>
     <div class="content">
       <div class="hourly-view">
         <ul class="hours">
@@ -33,15 +19,11 @@
 </template>
 
 <script>
-import arrow from '@/assets/next-arrow.png';
+
+import Header from '@/components/Header.vue';
 
 export default {
   name: "DayView",
-  data() {
-    return {
-      arrow
-    }
-  },
   props: {
     day: {
       type: Number,
@@ -117,6 +99,9 @@ export default {
     monthLink() {
       return this.month + 1;
     }
+  },
+  components: {
+    Header,
   },
   methods: {
     daysInMonth(year, month) {

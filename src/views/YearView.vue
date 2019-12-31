@@ -1,14 +1,7 @@
 <template>
   <div class="year-view">
-    <nav>
-      <router-link v-if="routerActive" :to="{ name: 'year', params: { year: this.year - 1} }" class="previous-year" >
-        <img :src="arrow"/>
-      </router-link>
-      <h1 v-html="year"></h1>
-      <router-link v-if="routerActive" :to="{ name: 'year', params: { year: this.year + 1} }" class="next-year" >
-        <img :src="arrow"/>
-      </router-link>
-    </nav>
+    <Header v-if="routerActive" :year="year" :lang="lang"/>
+    <h1 v-else v-html="year"></h1>
     <div class="year">
       <ul class="months">
         <li v-for="month in 12" :key="month" class="month">
@@ -27,6 +20,7 @@
 </template>
 
 <script>
+  import Header from '@/components/Header.vue';
   import Month from '@/components/Month.vue';
 
   import arrow from '@/assets/next-arrow.png';
@@ -51,6 +45,10 @@
         default: false,
       }
     },
+    components: {
+      Header,
+      Month,
+    },
     methods: {
       monthName(month) {
         return new Date(0, month).toLocaleDateString(this.lang, { month: "long" });
@@ -58,9 +56,6 @@
       daysInMonth(month) {
         return new Date(this.year, month + 1, 0).getDate();
       },
-    },
-    components: {
-      Month,
     },
   }
 </script>

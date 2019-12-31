@@ -1,18 +1,7 @@
 <template>
   <div class="month-view">
-    <nav>
-      <router-link v-if="routerActive" :to="{ name: 'month', params: previousMonth }" class="previous-month" >
-        <img :src="arrow"/>
-      </router-link>
-      <h1>
-        <span v-html="header"></span>
-        <router-link v-if="routerActive" :to="{ name: 'year', params: { year: year } }" class="year" v-html="year"></router-link>
-        <span v-else class="year" v-html="year"></span>
-      </h1>
-      <router-link v-if="routerActive" :to="{ name: 'month', params: nextMonth }" class="next-month" >
-        <img :src="arrow"/>
-      </router-link>
-    </nav>
+    <Header v-if="routerActive" :month="month" :year="year" :lang="lang"/>
+    <h1 v-else v-html="header"></h1>
     <div class="month">
       <ul class="days">
         <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month">
@@ -39,6 +28,9 @@
 </template>
 
 <script>
+
+import Header from '@/components/Header.vue';
+
 import arrow from '@/assets/next-arrow.png';
 
 export default {
@@ -69,7 +61,7 @@ export default {
   },
   computed: {
     header() {
-      return `${this.monthName} `;
+      return `${this.monthName} ${this.year}`;
     },
     monthName() {
       return new Date(this.year, this.month).toLocaleDateString(this.lang, { month: "long" });
@@ -107,6 +99,9 @@ export default {
       }
       return params;
     }
+  },
+  components: {
+    Header,
   },
   methods: {
     daysInMonth(month) {

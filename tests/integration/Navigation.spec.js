@@ -25,7 +25,7 @@ describe('Year Navigation', () => {
   it('Navigates to previous year', () => {
     router.push("/2020");
 
-    const previousYear = wrapper.find('a.previous-year')
+    const previousYear = wrapper.find('a.previous');
     previousYear.trigger('click');
 
     expect(wrapper.text()).toContain('2019');
@@ -36,7 +36,7 @@ describe('Year Navigation', () => {
   it('Navigates to next year', () => {
     router.push("/2018");
 
-    const nextYear = wrapper.find('a.next-year')
+    const nextYear = wrapper.find('a.next');
     nextYear.trigger('click');
 
     expect(wrapper.text()).toContain('2019');
@@ -59,7 +59,7 @@ describe('Month navigation', () => {
   it('Navigates to previous month', () => {
     router.push("/2019/1");
 
-    const nextYear = wrapper.find('a.previous-month');
+    const nextYear = wrapper.find('a.previous');
     nextYear.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('December 2018');
@@ -68,7 +68,7 @@ describe('Month navigation', () => {
   it('Navigates to next month', () => {
     router.push("/2019/12");
 
-    const nextMonth = wrapper.find('a.next-month');
+    const nextMonth = wrapper.find('a.next');
     nextMonth.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('January 2020');
@@ -77,7 +77,7 @@ describe('Month navigation', () => {
   it('Navigates to previous month using second link', () => {
     router.push("/2019/11");
 
-    const nextYear = wrapper.find('a.previous');
+    const nextYear = wrapper.find('li > a.previous');
     nextYear.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('October 2019');
@@ -86,7 +86,7 @@ describe('Month navigation', () => {
   it('Navigates to next month using second link', () => {
     router.push("/2019/6");
 
-    const nextYear = wrapper.find('a.next');
+    const nextYear = wrapper.find('li > a.next');
     nextYear.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('July 2019');
@@ -117,7 +117,7 @@ describe('Day navigation', () => {
   it('Navigates to previous day', () => {
     router.push("/2019/1/1");
 
-    const nextDay = wrapper.find('a.previous-day');
+    const nextDay = wrapper.find('a.previous');
     nextDay.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('Monday, December 31, 2018');
@@ -126,7 +126,7 @@ describe('Day navigation', () => {
   it('Navigates to next day', () => {
     router.push("/2019/12/31");
 
-    const nextMonth = wrapper.find('a.next-day');
+    const nextMonth = wrapper.find('a.next');
     nextMonth.trigger('click');
 
     expect(cleanText(wrapper.text())).toContain('Wednesday, January 1, 2020');

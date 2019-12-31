@@ -13,7 +13,7 @@ describe('DayView', () => {
   });
 
   it('Renders October 31, 2019', () => {
-    const header = wrapper.find('h1#date');
+    const header = wrapper.find('h1');
     expect(cleanText(header.text())).toContain('Thursday, October 31, 2019');
   });
 

@@ -33,7 +33,7 @@ describe('Header', () => {
 
     const month = wrapper.find('a.month');
     expect(month.exists()).toBe(true);
-    expect(month.attributes('href')).toBe('/2019/9');
+    expect(month.attributes('href')).toBe('/2019/10');
   });
 
   it('Renders October 2019', () => {
