@@ -8,7 +8,7 @@ There are two ways to use this library. First, is using the individual YearView,
 
 ## To Do
 
-* I18N
+* Locale detection for language default
 * Accessibility
 * Colour control
 * Add styles for MonthView in portrait mode
