@@ -1,6 +1,6 @@
 <template>
   <div class="calendar-view">
-    <router-view/>
+    <router-view :lang="lang"/>
   </div>
 </template>
 
@@ -8,6 +8,12 @@
 
 export default {
   name: 'CalendarView',
+  props: {
+    lang: {
+      type: String,
+      default: 'en',
+    },    
+  }
 }
 </script>
 

@@ -4,13 +4,22 @@
       <router-link :to="{ name: 'month', params: thisMonth }">Calendar View With Router</router-link>
       <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
       <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
+      <select v-model="lang">
+        <option v-for="language in languages" :key="language">{{ language }}</option>
+      </select>
     </nav>
-    <router-view></router-view>
+    <router-view :lang="lang"></router-view>
   </div>
 </template>
 
 <script>
   export default {
+    data() {
+      return {
+        lang: 'en',
+        languages: ['en', 'fr', 'es', 'da'],
+      }
+    },
     computed: {
       thisMonth() {
         const today = new Date();
