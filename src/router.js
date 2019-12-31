@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/calendar',
+      redirect: 'month',
     },
     {
       path: '/calendar/',
