@@ -51,7 +51,9 @@ export default {
   },
   computed: {
     header() {
-      return `${this.weekday}, ${this.monthName} ${this.day}, ${this.year}`
+      const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
+      const string = new Date(this.year, this.month, this.day).toLocaleDateString(this.lang, options);
+      return string;
     },
     weekday() {
       return new Date(this.year, this.month, this.day).toLocaleDateString(this.lang, { weekday: "long" })

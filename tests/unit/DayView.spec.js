@@ -39,7 +39,8 @@ describe('DayView', () => {
       },
     });
 
-    expect(cleanText(VictoriaDay.text())).toContain('lundi, mai 20, 2019');
+    const expected = new Date(2019, 4, 20).toLocaleDateString('fr', { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    expect(cleanText(VictoriaDay.text())).toContain(expected);
   });
 
   it('Renders 24 hours of a day', () => {
