@@ -35,7 +35,7 @@
     },
     computed: {
       monthName() {
-        if(this.month) {
+        if(!isNaN(this.month)) {
           return new Date(this.year, this.month).toLocaleDateString(this.lang, { month: "long" });
         } else {
           return "";
