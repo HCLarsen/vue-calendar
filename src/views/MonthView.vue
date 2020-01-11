@@ -119,16 +119,39 @@ export default {
 }
 </script>
 
+<style>
+  .day {
+    background-color: inherit;
+  }
+
+  .day.other-month {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+
+  .day p {
+    background-color: rgba(128, 128, 128, 0.4);
+  }
+</style>
+
 <style scoped>
+  .month-view {
+    color: inherit;
+    border-color: inherit;
+  }
+
   .month {
     width: 100%;
+
+    color: inherit;
+    border-color: inherit;
   }
 
   ul.days {
     width: calc(100% - 1px);
     margin: 0;
     padding: 0;
-    border: 0.5px solid grey;
+    border: 0.5px solid;
+    border-color: inherit;
 
     list-style-type: none;
 
@@ -142,8 +165,6 @@ export default {
     height: 6em;
 
     border: inherit;
-
-    background: inherit;
   }
 
   li.day > a {
@@ -160,39 +181,5 @@ export default {
     padding-right: 0.2em;
     margin: 0;
     text-align: right;
-    background-color: lightgrey;
-  }
-
-  li.day.other-month {
-    background-color: #EEE;
-  }
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  nav > h1 {
-    font-size: 2em;
-  }
-
-  nav > h1 > a {
-    color: inherit;
-  }
-
-  .previous-month, .next-month {
-    display: inline;
-    height: 2em;
-  }
-
-  .previous-month > img {
-    height: 100%;
-    transform: scaleX(-1);
-  }
-
-  .next-month > img {
-    height: 100%;
   }
 </style>

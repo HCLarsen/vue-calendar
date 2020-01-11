@@ -60,6 +60,12 @@
   }
 </script>
 
+<style>
+  .month {
+    background-color: inherit;  
+  }
+</style>
+
 <style scoped>
   ul.months {
     width: 100%;
@@ -81,7 +87,6 @@
   li.month > a {
     text-decoration: none;
     color: inherit;
-    background-color: inherit;
   }
 
   @media screen and (min-aspect-ratio: 1/1) {
@@ -104,35 +109,5 @@
 
   li.day {
     width: calc(100% / 7 - 1px);
-  }
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  nav > h1 {
-    font-size: 2em;
-  }
-
-  .previous-year {
-    display: inline;
-    height: 2em;
-  }
-
-  .previous-year > img {
-    height: 100%;
-    transform: scaleX(-1);
-  }
-
-  .next-year {
-    display: inline;
-    height: 2em;
-  }
-
-  .next-year > img {
-    height: 100%;
   }
 </style>

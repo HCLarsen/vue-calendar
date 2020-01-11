@@ -1,8 +1,8 @@
 <template>
   <ul class="days">
-    <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month"><p v-html="day"></p></li>
-    <li v-for="day in daysInThisMonth" :key="day" class="day"><p v-html="day"></p></li>
-    <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month"><p v-html="day"></p></li>
+    <li v-for="day in visibleDaysInPreviousMonth" :key="'p'+day" class="day other-month mini"><p v-html="day"></p></li>
+    <li v-for="day in daysInThisMonth" :key="day" class="day mini"><p v-html="day"></p></li>
+    <li v-for="day in visibleDaysInNextMonth" :key="'n'+day" class="day other-month mini"><p v-html="day"></p></li>
   </ul>
 </template>
 
@@ -50,6 +50,17 @@
   }
 </script>
 
+<style>
+  .day.other-month.mini {
+    color: grey;
+    background-color: transparent;
+  }
+
+  .day.mini > p {
+    background-color: transparent;
+  }
+</style>
+
 <style scoped>
   ul.days {
     width: 100%;
@@ -71,7 +82,4 @@
     margin: 0;
   }
 
-  li.day.other-month {
-    color: grey;
-  }
 </style>

@@ -137,7 +137,7 @@
           <router-link to={ this.previous } class={`previous`}>
             <img src={arrow}/>
           </router-link>
-          <h1>{ components }</h1>
+          <h1 class="date">{ components }</h1>
           <router-link to={ this.next } class={`next`}>
             <img src={arrow}/>
           </router-link>
@@ -146,6 +146,12 @@
     },
   }
 </script>
+
+<style>
+  .date, .month, .year {
+    color: inherit;
+  }
+</style>
 
 <style scoped>
   nav {
@@ -157,10 +163,6 @@
 
   nav > h1 {
     font-size: 2em;
-  }
-
-  nav > h1 > a {
-    color: inherit;
   }
 
   .previous, .next {

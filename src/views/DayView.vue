@@ -114,6 +114,12 @@ export default {
 
 </script>
 
+<style>
+  .event-details, .hourly-view, .bar {
+    border-color: inherit;
+  }
+</style>
+
 <style scoped>
   .content {
     width: 100%;
@@ -125,7 +131,9 @@ export default {
 
   .event-details, .hourly-view {
     width: 50%;
-    border: 1px solid black;
+    border: 1px solid;
+    border-width: 1px;
+    border-style: solid;
   }
 
   .hourly-view {
@@ -160,35 +168,6 @@ export default {
     position: absolute;
     top: 0;
     width: calc(100% - 2px);
-    border: 1px solid grey;
-  }
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  nav > h1 {
-    font-size: 2em;
-  }
-
-  nav > h1 > a {
-    color: inherit;
-  }
-
-  .previous-day, .next-day {
-    display: inline;
-    height: 2em;
-  }
-
-  .previous-day > img {
-    height: 100%;
-    transform: scaleX(-1);
-  }
-
-  .next-day > img {
-    height: 100%;
+    border: 1px solid;
   }
 </style>

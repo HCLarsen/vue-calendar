@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app" :class="theme">
     <nav id="nav">
       <router-link :to="{ name: 'month', params: thisMonth }">Calendar View With Router</router-link>
       <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
       <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
       <select v-model="lang">
         <option v-for="language in languages" :key="language">{{ language }}</option>
+      </select>
+      <label>Colour Theme:</label>
+      <select v-model="theme">
+        <option v-for="theme in themes" :key="theme">{{ theme }}</option>
       </select>
     </nav>
     <router-view :lang="lang"></router-view>
@@ -16,6 +20,8 @@
   export default {
     data() {
       return {
+        theme: 'light',
+        themes: ['light', 'dark', 'blue'],
         lang: 'en',
         languages: ['en', 'fr', 'es', 'da'],
       }
@@ -46,12 +52,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 
   width: 90%;
-  margin: auto;
-  margin-bottom: 25px;
+  padding: 0 5% 25px 5%;
 }
+
 #nav {
   padding: 30px;
 }
@@ -64,5 +69,23 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.light {
+  background-color: white;
+  color: #2c3e50;
+  border-color: grey;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+  border-color: grey;
+}
+
+.blue {
+  background-color: royalblue;
+  color: white;
+  border-color: white;
 }
 </style>
