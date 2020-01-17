@@ -62,16 +62,7 @@ export default {
       return new Date(this.year, this.month).toLocaleDateString(this.lang, { month: "long" })
     },
     hours() {
-      const hours = ['12AM'];
-      for (var a = 1; a < 12; a++) {
-        hours.push(`${a}AM`);
-      }
-      hours.push('12PM');
-      for (var p = 1; p < 12; p++) {
-        hours.push(`${p}PM`);
-      }
-      hours.push('12AM');
-      return hours;
+      return Array.from({ length: 25 }, (x, index) => new Date(0, 0, 0, index, 0, 0).toLocaleTimeString(this.lang, { hour: "numeric" }));
     },
     nextDay() {
       let params = { year: this.year, month: this.month + 1, day: this.day + 1};
