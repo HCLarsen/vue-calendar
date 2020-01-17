@@ -1,0 +1,17 @@
+{
+  "title": "Options",
+  "topics": [
+    {
+      "title": "Language",
+      "text": "Language can be set on any component using the \"lang\" prop. This prop accepts a string containing a BCP 47 language tag. Any tag acceptable by the ECMAScript Internationalization API will be acceptable by this library."
+    },
+    {
+      "title": "Font",
+      "text": "Fonts aren't set by the library. The developer has full control over all font styles and sizes in this library. Be mindful that many height attributes are set using <em>em</em> units, so the font sizes will control the height of many elements."
+    },
+    {
+      "title": "Colour",
+      "text": "Most elements have their color, border-color, and background-color set to inherit, making it easy to set a common theme by setting these attributes to the top level element of the component. This value is also set using only the class selector, making it easy to set the colour to a specific element."
+    }
+  ]
+}

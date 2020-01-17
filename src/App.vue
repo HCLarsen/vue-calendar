@@ -1,29 +1,46 @@
 <template>
   <div id="app" :class="theme">
-    <nav id="nav">
-      <router-link :to="{ name: 'month', params: thisMonth }">Calendar View With Router</router-link>
-      <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
-      <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
-      <select v-model="lang">
-        <option v-for="language in languages" :key="language">{{ language }}</option>
-      </select>
-      <label>Colour Theme:</label>
-      <select v-model="theme">
-        <option v-for="theme in themes" :key="theme">{{ theme }}</option>
-      </select>
-    </nav>
-    <router-view :lang="lang"></router-view>
+    <header>
+      <nav id="nav">
+        <router-link :to="{ name: 'month', params: thisMonth }">Calendar View With Router</router-link>
+        <router-link :to="{ name: 'month-view', params: thisMonth }">Month View</router-link>
+        <router-link :to="{ name: 'day-view', params: today }">Day View</router-link>
+      </nav>
+    </header>
+    <aside>
+      <h3>{{ content.title }}</h3>
+      <div v-for="(topic, index) in content.topics" :key="index" class="topic">
+        <h4>{{ topic.title }}</h4>
+        <p>{{ topic.text }}</p>
+        <label v-if="index==0">lang:
+          <select v-model="lang">
+            <option v-for="language in languages" :key="language">{{ language }}</option>
+          </select>
+        </label>
+        <label v-if="index==2">Colour Theme:
+          <select v-model="theme">
+            <option v-for="theme in themes" :key="theme">{{ theme }}</option>
+          </select>
+        </label>
+      </div>
+    </aside>
+    <main>
+      <router-view :lang="lang"></router-view>
+    </main>
   </div>
 </template>
 
 <script>
+  import content from '@/english.json';
+
   export default {
     data() {
       return {
         theme: 'light',
         themes: ['light', 'dark', 'blue'],
         lang: 'en',
-        languages: ['en', 'fr', 'es', 'da'],
+        languages: ['en', 'fr-CA', 'es', 'da', 'ja'],
+        content,
       }
     },
     computed: {
@@ -45,47 +62,80 @@
 </script>
 
 <style>
-@import './assets/main.css';
+  @import './assets/main.css';
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
 
-  width: 90%;
-  padding: 0 5% 25px 5%;
-}
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
 
-#nav {
-  padding: 30px;
-}
+    background-color: inherit;
+  }
 
-#nav a {
-  margin: 0 10px;
-  font-weight: bold;
-  color: #2c3e50;
-}
+  #nav {
+    padding: 30px;
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  #nav a {
+    margin: 0 10px;
+    font-weight: bold;
+    /* color: #2c3e50; */
+    color: inherit;
+  }
 
-.light {
-  background-color: white;
-  color: #2c3e50;
-  border-color: grey;
-}
+  #nav a.router-link-exact-active {
+    color: #42b983;
+  }
 
-.dark {
-  background-color: black;
-  color: white;
-  border-color: grey;
-}
+  aside {
+    box-sizing: border-box;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    height: calc(100% - 100px);
+    width: 20%;
+    padding: 0% 1% 3% 1%;
+    border: 1px solid;
+    overflow: auto;
+  }
 
-.blue {
-  background-color: royalblue;
-  color: white;
-  border-color: white;
-}
+  aside .topic:last-child {
+    padding-bottom: 20%;
+  }
+
+  aside p {
+    text-align: left;
+  }
+
+  main {
+    width: 70%;
+    padding: 100px 5% 25px 25%;
+  }
+
+  .light {
+    background-color: white;
+    color: #2c3e50;
+    border-color: grey;
+  }
+
+  .dark {
+    background-color: black;
+    color: white;
+    border-color: grey;
+  }
+
+  .blue {
+    background-color: royalblue;
+    color: white;
+    border-color: white;
+  }
 </style>

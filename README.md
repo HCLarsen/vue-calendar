@@ -22,7 +22,7 @@ Fonts aren't set in the components, leaving them fully flexible for the develope
 
 * Locale detection for language default
 * Accessibility
-* Colour control
+* Colour control for arrow icons
 * Add styles for MonthView in portrait mode
 
 ## Contributions
