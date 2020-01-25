@@ -48,13 +48,13 @@ describe('DayView', () => {
     expect(hours.length).toBe(25);
 
     const first = hours.at(0);
-    expect(first.html()).toContain('12AM');
+    expect(first.html()).toContain('12 AM');
 
     const noon = hours.at(12);
-    expect(noon.html()).toContain('12PM');
+    expect(noon.html()).toContain('12 PM');
 
     const last = hours.at(24);
-    expect(last.html()).toContain('12AM');
+    expect(last.html()).toContain('12 AM');
   })
 
   it('Renders notification for no events', () => {
