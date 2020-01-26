@@ -103,6 +103,9 @@
     methods: {
       daysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
+      },
+      splitAt(string, indexes) {
+        string.slice(0, indexes[0]);
       }
     },
     // eslint-disable-next-line
@@ -120,7 +123,9 @@
         dateString = new Date(this.year, 1).toLocaleDateString(this.lang, options);
       }
 
-      let components = dateString.split(/\b/).map((word) => {
+      const regex = new RegExp(`(${this.monthName}|${this.year})`);
+      let components = dateString.split(regex).map((word) => {
+
         if(word === `${this.year}` && !isNaN(this.month)) {
           let yearPath = { name: 'year', params: { year: this.year } };
           return <router-link class="year" to={ yearPath }>{ this.year }</router-link>

@@ -36,11 +36,11 @@ describe('Header', () => {
     expect(month.attributes('href')).toBe('/2019/10');
   });
 
-  it('Renders New Years Day in French', () => {
+  it('Renders February 1st in French', () => {
     const wrapper = mount(Header, {
       propsData: {
         day: 1,
-        month: 0,
+        month: 1,
         year: 2020,
         lang: 'fr'
       },
@@ -48,12 +48,12 @@ describe('Header', () => {
       router,
     });
 
-    const expected = new Date(2020, 0, 1).toLocaleDateString('fr', { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    const expected = new Date(2020, 1, 1).toLocaleDateString('fr', { weekday: "long", month: "long", day: "numeric", year: "numeric" });
     expect(cleanText(wrapper.text())).toContain(expected);
 
     const month = wrapper.find('a.month');
     expect(month.exists()).toBe(true);
-    expect(month.attributes('href')).toBe('/2020/1');
+    expect(month.attributes('href')).toBe('/2020/2');
   });
 
   it('Renders October 2019', () => {
