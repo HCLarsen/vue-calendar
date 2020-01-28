@@ -55,9 +55,17 @@ describe('DayView', () => {
 
     const last = hours.at(24);
     expect(last.html()).toContain('12 AM');
-  })
+  });
 
-  it('Renders notification for no events', () => {
-    expect(wrapper.html()).toContain('No Events');
-  })
+  it('Does render event details with a selected event', () => {
+    wrapper.setData({ event: '{ name: "Canada Day"}' });
+    const events = wrapper.find('.event-details');
+    expect(events.exists()).toBe(true);
+  });
+
+  it('Does not render event details with no events', () => {
+    wrapper.setData({ event: null });
+    const events = wrapper.find('.event-details');
+    expect(events.exists()).toBe(false);
+  });
 })

@@ -3,7 +3,7 @@
     <Header v-if="routerActive" :day="day" :month="month" :year="year" :lang="lang"/>
     <h1 v-else v-html="header"></h1>
     <div class="content">
-      <div class="hourly-view">
+      <div :class="[event ? '': 'full-view', 'hourly-view']">
         <ul class="hours">
           <li v-for="(hour, index) in hours" :key="index" class="hour">
             <p v-html="hour"></p>
@@ -11,8 +11,7 @@
           </li>
         </ul>
       </div>
-      <div class="event-details">
-        <h2>No Events</h2>
+      <div v-if="event" class="event-details">
       </div>
     </div>
   </div>
@@ -24,6 +23,11 @@ import Header from '@/components/Header.vue';
 
 export default {
   name: "DayView",
+  data() {
+    return {
+      event: null,
+    }
+  },
   props: {
     day: {
       type: Number,
@@ -125,6 +129,10 @@ export default {
     border: 1px solid;
     border-width: 1px;
     border-style: solid;
+  }
+
+  .hourly-view.full-view {
+    width: 100%;
   }
 
   .hourly-view {
