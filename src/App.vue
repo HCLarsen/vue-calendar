@@ -25,7 +25,8 @@
       </div>
     </aside>
     <main>
-      <router-view :lang="lang"></router-view>
+      <router-view v-if="selectedLanguage" :lang="selectedLanguage"></router-view>
+      <router-view v-else></router-view>
     </main>
   </div>
 </template>
@@ -38,8 +39,8 @@
       return {
         theme: 'light',
         themes: ['light', 'dark', 'blue'],
-        lang: 'en',
-        languages: ['en', 'fr-CA', 'es', 'da', 'ja'],
+        lang: 'Browser Default',
+        languages: ['Browser Default', 'en', 'fr-CA', 'es', 'da', 'ja'],
         content,
       }
     },
@@ -57,6 +58,13 @@
         const day = today.getDate();
         return { year: year, month: month, day: day };
       },
+      selectedLanguage() {
+        if (this.lang !== 'Browser Default') {
+          return this.lang;
+        } else {
+          return null
+        }
+      }
     }
   }
 </script>

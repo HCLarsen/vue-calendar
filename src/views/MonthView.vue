@@ -52,7 +52,7 @@ export default {
     },
     lang: {
       type: String,
-      default: 'en',
+      default: navigator.language,
     },
     routerActive: {
       type: Boolean,
