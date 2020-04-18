@@ -23,15 +23,8 @@
   import Header from '@/components/Header.vue';
   import Month from '@/components/Month.vue';
 
-  import arrow from '@/assets/next-arrow.png';
-
   export default {
     name: "YearView",
-    data() {
-      return {
-        arrow
-      }
-    },
     props: {
       year: {
         type: Number

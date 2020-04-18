@@ -1,13 +1,8 @@
 <script>
-  import arrow from '@/assets/next-arrow.png';
+  import Arrow from '@/components/Arrow.vue';
 
   export default {
     name: 'Header',
-    data() {
-      return {
-        arrow
-      }
-    },
     props: {
       day: {
         type: Number,
@@ -32,6 +27,9 @@
         type: Boolean,
         default: false,
       }
+    },
+    components: {
+      Arrow,
     },
     computed: {
       monthName() {
@@ -140,12 +138,12 @@
       return (
         <nav>
           <router-link to={ this.previous } class={`previous`}>
-            <img src={arrow}/>
+            <Arrow/>
           </router-link>
           <h1 class="date">{ components }</h1>
           <router-link to={ this.next } class={`next`}>
-            <img src={arrow}/>
-          </router-link>
+            <Arrow/>
+        </router-link>
         </nav>
       );
     },
@@ -171,16 +169,21 @@
   }
 
   .previous, .next {
+    color: inherit;
     display: inline;
     height: 2em;
   }
 
-  .previous > img {
+  .previous > svg {
     height: 100%;
     transform: scaleX(-1);
   }
 
-  .next > img {
+  .next > svg {
     height: 100%;
-}
+  }
+
+  svg {
+    fill: currentColor;
+  }
 </style>

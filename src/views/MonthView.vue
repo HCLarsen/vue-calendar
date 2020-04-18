@@ -31,15 +31,8 @@
 
 import Header from '@/components/Header.vue';
 
-import arrow from '@/assets/next-arrow.png';
-
 export default {
   name: "MonthView",
-  data() {
-    return {
-      arrow
-    }
-  },
   props: {
     month: {
       type: Number,
