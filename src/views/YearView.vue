@@ -44,7 +44,7 @@
     },
     methods: {
       monthName(month) {
-        return new Date(0, month).toLocaleDateString(this.lang, { month: "long" });
+        return new Date(2007, month).toLocaleDateString(this.lang, { month: "long" });
       },
       daysInMonth(month) {
         return new Date(this.year, month + 1, 0).getDate();
