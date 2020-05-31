@@ -155,9 +155,19 @@ export default {
 
   li.day {
     width: calc(100% / 7 - 1px);
-    height: 6em;
+    height: 4.5em;
 
     border: inherit;
+  }
+
+  @media screen and (min-aspect-ratio: 1/1) {
+    li.day {
+      height: 6em;
+    }
+
+    .day.other-month {
+      display: block;
+    }
   }
 
   li.day > a {

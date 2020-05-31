@@ -73,7 +73,7 @@
   }
 
   li.month {
-    width: calc(93% / 3);
+    width: 98%;
     padding: 0 1%;
   }
 
@@ -85,6 +85,21 @@
   @media screen and (min-aspect-ratio: 1/1) {
     li.month {
       width: calc(92% / 4);
+    }
+  }
+
+  @media screen and (min-width: 350px) {
+    li.month {
+      width: calc(96% / 2);
+      padding: 0 1%;
+    }
+  }
+
+
+  @media screen and (min-width: 520px) {
+    li.month {
+      width: calc(93% / 3);
+      padding: 0 1%;
     }
   }
 

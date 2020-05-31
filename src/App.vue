@@ -105,6 +105,7 @@
   }
 
   aside {
+    display: none;
     box-sizing: border-box;
     position: fixed;
     top: 100px;
@@ -125,8 +126,19 @@
   }
 
   main {
-    width: 70%;
-    padding: 100px 5% 25px 25%;
+    width: 90%;
+    padding: 100px 5% 25px 5%;
+  }
+
+  @media only screen and (min-width: 520px) {
+    aside {
+      display: block;
+    }
+
+    main {
+      width: 70%;
+      padding: 100px 5% 25px 25%;
+    }
   }
 
   .light {
