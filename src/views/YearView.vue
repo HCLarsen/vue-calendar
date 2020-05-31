@@ -82,12 +82,6 @@
     color: inherit;
   }
 
-  @media screen and (min-aspect-ratio: 1/1) {
-    li.month {
-      width: calc(92% / 4);
-    }
-  }
-
   @media screen and (min-width: 350px) {
     li.month {
       width: calc(96% / 2);
@@ -100,6 +94,12 @@
     li.month {
       width: calc(93% / 3);
       padding: 0 1%;
+    }
+  }
+
+  @media screen and (min-aspect-ratio: 1/1) and (min-width: 750px) {
+    li.month {
+      width: calc(92% / 4);
     }
   }
 
